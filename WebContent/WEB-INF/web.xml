@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>Assignment4ex</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>page00.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>pagecontrol</servlet-name>
+    <servlet-class>com.jin.pages.PageManagerC</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>pagecontrol</servlet-name>
+    <url-pattern>/pagescontrol.jsp</url-pattern>
+  </servlet-mapping>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>JDBC Realm</web-resource-name>
+      <url-pattern>/*</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>admin</role-name>
+      <role-name>owner</role-name>
+      <role-name>customer</role-name>
+      <role-name>guest</role-name>
+      <role-name>user</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+  <login-config>
+    <auth-method>FORM</auth-method>
+    <realm-name>JDBC Realm</realm-name>
+    <form-login-config>
+      <form-login-page>/login.jsp</form-login-page>
+      <form-error-page>/login_error.jsp</form-error-page>
+    </form-login-config>
+  </login-config>
+  <security-role>
+    <description>admin service employees</description>
+    <role-name>admin</role-name>
+  </security-role>
+   <security-role>
+    <description>owner service employees</description>
+    <role-name>owner</role-name>
+  </security-role>
+  <security-role>
+    <description>customer service employees</description>
+    <role-name>customer</role-name>
+  </security-role>
+  <security-role>
+    <description>guest service employees</description>
+    <role-name>guest</role-name>
+  </security-role>
+  <security-role>
+    <description>user service employees</description>
+    <role-name>user</role-name>
+  </security-role>
+</web-app>
